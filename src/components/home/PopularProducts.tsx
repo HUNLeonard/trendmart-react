@@ -18,7 +18,7 @@ const PopularProducts = () => {
       <div className="overflow-x-auto fancy-scrollbar">
         {
           isError
-            ? "sometihng went wrong"
+            ? "Something went wrong"
             : isPending
               ? "Loading..."
               : <ProductList products={products.slice(0, MAXPOPULARPRODUCT)} className="[grid-template-columns:repeat(4,minmax(250px,300px));]  my-6" />
