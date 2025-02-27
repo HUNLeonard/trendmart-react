@@ -1,0 +1,120 @@
+@import 'tailwindcss';
+
+:root{
+  --cotanier-w: 80rem;
+  --header-h: 80px;
+  --random-direction: 400%;
+}
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-xs: 30rem; /* 480px */
+  --breakpoint-sm: 40rem; /* 640px */
+  --breakpoint-md: 48rem; /* 768px */
+  --breakpoint-lg: 64rem; /* 1 024px */
+  --breakpoint-xl: 80rem; /* 1 280px */
+  --breakpoint-2xl: 90rem; /* 1 440px */
+  --breakpoint-3xl: 120rem;
+  --breakpoint-4xl: 135rem;
+
+  --color-primary: #3B82F6;
+  --color-secondary: #F97316;
+  --color-neutral-dark: #1F2937;
+  --color-neutral-medium: #E5E7EB;
+  --color-neutral-light: #F9FAFB;
+  --color-accent: #10B981;
+  --color-error: #EF4444;
+
+  --font-outfit: 'Outfit', sans-serif;
+  --font-dm-sans: 'DM Sans', sans-serif;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(/fonts/QGYvz_MVcBeNP4NJtEtq.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(/fonts/rP2Yp2ywxg089UriI5-g4vlH9VoD8Cmcqbu0-K4.woff2) format('woff2');
+}
+
+.grow-pulse{
+  animation: grow-pulse 2s infinite ease-in-out;
+
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.fancy-scrollbar::-webkit-scrollbar{
+  width: 5px;
+  height: 8px;
+  background-color: #aaa;
+}
+
+.fancy-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  cursor:grabbing;
+}
+
+@property --x {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --y {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0;
+}
+
+.disapear-top{
+  transform: translateX(var(--x)) translateY(var(--y));
+  animation: 
+    move-y forwards ease-out,
+    move-x forwards ease-out;
+}
+
+@keyframes grow-pulse {
+  0%{
+    opacity: 1;
+  }100%{
+    opacity: 0;
+    scale: 150% 150%; 
+  }
+}
+
+@keyframes move-y {
+  0% {
+    --y: 0;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  100% {
+    --y: -300%;
+    opacity: 0;
+  }
+}
+
+@keyframes move-x {
+  0%, 100% {
+    --x: 0;
+  }
+  25%, 75% {
+    --x: 50%;
+  }
+  50% {
+    --x: -50%;
+  }
+}
