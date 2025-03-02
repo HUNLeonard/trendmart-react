@@ -1,16 +1,32 @@
-import { useCartStore } from '../store/cart.store'
+import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../store/auth.store';
+import { useEffect } from 'react';
 
+import CartContent from '../components/cart/CartContent';
+import CartProvider from '../components/context/CartProvider';
+
+
+
+// Create a wrapper component to handle authentication
 const Cart = () => {
-  const cart = useCartStore(store => store.cart)
+  const userId = useAuthStore(store => store.userId);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!userId) {
+      navigate("/");
+    }
+  }, [userId, navigate]);
+
+  if (!userId) {
+    return null;
+  }
 
   return (
-    // TODO use the "product get by id" to get the items, well everything then figure out design 
-    <div>
-      <ul>
-        {cart.map((item, index) => <li key={index}>{item.productId} - {item.ammount}</li>)}
-      </ul>
-    </div>
-  )
-}
+    <CartProvider userId={userId}>
+      <CartContent />
+    </CartProvider>
+  );
+};
 
-export default Cart
+export default Cart;

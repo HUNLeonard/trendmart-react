@@ -5,7 +5,9 @@ import Shop from './pages/Shop'
 import Cart from './pages/Cart'
 import MainLayout from './components/layout/MainLayout'
 import About from './pages/About'
+import Product from './pages/Product'
 import ScrollToTop from './components/common/ScrollRestoration'
+import NoPage from './pages/NoPage'
 
 const App = () => {
   const client = new QueryClient({
@@ -25,9 +27,14 @@ const App = () => {
         <Routes>
           <Route path='/' element={<MainLayout />} >
             <Route index element={<Home />} />
-            <Route path="shop" element={<Shop />} />
+
             <Route path="cart" element={<Cart />} />
+            <Route path="products" >
+              <Route index element={<Shop />} />
+              <Route path=":productId" element={<Product />} />
+            </Route>
             <Route path="about" element={<About />} />
+            <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>
       </QueryClientProvider>

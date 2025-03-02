@@ -1,5 +1,5 @@
 import SectionTitle from "../common/SectionTitle"
-import FeatureList from "./FeatureList"
+import FeatureList from "../cards/category/FeatureList"
 
 
 

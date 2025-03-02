@@ -8,7 +8,7 @@ const FooterQuickLinks = () => {
       text: "Home"
     },
     {
-      to: "shop",
+      to: "products",
       text: "Shop"
     },
     {

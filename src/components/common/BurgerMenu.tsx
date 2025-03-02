@@ -2,7 +2,7 @@ import { cn } from '../../utils/cn'
 
 interface BurgerMenuProp {
   isOpen: boolean;
-  toggleOpen: () => void;
+  toggleOpen?: () => void;
 }
 
 

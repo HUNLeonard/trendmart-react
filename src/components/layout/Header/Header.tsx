@@ -10,7 +10,7 @@ const navPages: navigationLink[] = [
     text: "Home"
   },
   {
-    to: "shop",
+    to: "products",
     text: "Shop"
   },
   {
@@ -28,7 +28,7 @@ const Header = () => {
   const { isOpen, toggleOpen, isDesktopView } = useMobilSidebar();
 
   return (
-    <header className="relative z-10">
+    <header className="relative z-50">
       <div className="fixed top-0 left-0 right-0 min-h-[var(--header-h)] bg-neutral-light/80 backdrop-blur-sm border-b-2 border-neutral-dark z-20 flex items-center">
         <div className="max-w-[var(--cotanier-w)] mx-auto w-full flex flex-row justify-between items-center px-2 md:px-4 h-full">
           <NavLink to={"/"} className="text-2xl font-bold font-outfit">TrendMart</NavLink>
