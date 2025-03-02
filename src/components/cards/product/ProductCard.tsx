@@ -9,7 +9,7 @@ import ProductCardHover from './ProductCardHover'
 import ProductPrice from '../../common/ProductPrice'
 
 const ProductCard = ({ product }: { product: Product }) => {
-  const isMobil = useContext(MobilProviderContext);
+  const context = useContext(MobilProviderContext);
   const [isHovered, setIsHovered] = useState(false);
 
   const isOnSale = useMemo(() => {
@@ -53,10 +53,10 @@ const ProductCard = ({ product }: { product: Product }) => {
             />
           </div>
         </Link>
-        <ProductCardHover productId={product.id} show={isMobil ?? false} />
+        <ProductCardHover productId={product.id} show={context?.isMobil ?? false} />
 
         {/* Quick view overlay on hover for desktop */}
-        {!isMobil && isHovered && (
+        {!context?.isMobil && isHovered && (
           <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm py-2 
                         transition-all duration-300 flex justify-center">
             <Link
@@ -96,7 +96,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             oldPrice={product.originalPrice}
           />
 
-          {isMobil && (
+          {context?.isMobil && (
             <div className="mt-3">
               <AddToCartButton
                 productId={product.id}

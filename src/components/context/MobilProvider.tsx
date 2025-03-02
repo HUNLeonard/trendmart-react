@@ -1,19 +1,26 @@
 import React, { createContext, useEffect, useState } from 'react'
 
+interface MobilProviderContext {
+  isMobil: boolean,
+  isSmallView: boolean
+}
 
-export const MobilProviderContext = createContext<boolean | null>(null)
+
+export const MobilProviderContext = createContext<MobilProviderContext | null>(null)
 
 const MobilProvider = ({ children }: { children: React.ReactNode }) => {
   const [isMobil, setIsMobil] = useState<boolean>(false);
+  const [isSmallView, setIsSmallView] = useState<boolean>(false);
 
   useEffect(() => {
     const controller = new AbortController();
 
     const handleResize = () => {
       const isTouchCapable = 'ontouchstart' in window || navigator.maxTouchPoints > 0
-
+      setIsSmallView(window.innerWidth < 480);
       if (isTouchCapable) {
         setIsMobil(true);
+
       } else {
         setIsMobil(false);
       }
@@ -26,7 +33,7 @@ const MobilProvider = ({ children }: { children: React.ReactNode }) => {
   }, [])
 
   return (
-    <MobilProviderContext.Provider value={isMobil}>
+    <MobilProviderContext.Provider value={{ isMobil, isSmallView }}>
       {children}
     </MobilProviderContext.Provider>
   )
