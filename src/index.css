@@ -118,3 +118,64 @@
     --x: -50%;
   }
 }
+
+@property --y {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes floatLeft {
+  0%{
+    opacity: 0;
+    translate: 200px 0px;
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 1;
+    translate: 0px 0px;
+  }
+}
+
+@keyframes floatRight {
+  0%{
+    opacity: 0;
+    translate: -200px 0px;
+  }
+  90%{
+
+    opacity: 1;
+  }
+  100%{
+    opacity: 1;
+    translate: 0px 0px;
+  }
+}
+@keyframes floatUp {
+  0%{
+    opacity: 0;
+    translate: 0px 200px;
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 1;
+    translate: 0px 0px;
+  }
+}
+@keyframes floatDown {
+  0%{
+    opacity: 0;
+    translate: 0px -200px;
+  }
+  90%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 1;
+    translate: 0px 0px;
+  }
+}
