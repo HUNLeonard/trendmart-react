@@ -29,7 +29,7 @@ const About = () => {
             </div>
           </div>
 
-          <div className="bg-neutral-medium/30 rounded-xl p-6 h-full shadow-md">
+          <div className="bg-white/65 rounded-xl p-6 h-full shadow-md">
             <div className="w-full h-48 md:h-64 bg-neutral-dark rounded-lg mb-4 shadow-lg">
               {/* This would be replaced with an actual image */}
               <div className="w-full h-full flex items-center justify-center text-neutral-medium overflow-hidden rounded-lg">

@@ -1,8 +1,6 @@
-export const priceFormatter = (price: number) => {
+export const priceFormatter = (price: number = 0) => {
   const dollar = price.toString().split(".")[0];
-  const cents = price.toFixed(2).toString().split(".")[1];
+  const cents = Number(price).toFixed(2).toString().split(".")[1];
 
-  return `$${
-    Number(dollar) < 9 ? dollar.padStart(2, "0") : dollar
-  }.${cents.padStart(2, "0")}`;
+  return `$${dollar.padStart(1, "0")}.${cents.padStart(2, "0")}`;
 };

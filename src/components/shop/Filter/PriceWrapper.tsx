@@ -2,8 +2,9 @@ import { ChevronDown, DollarSign } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
 import { cn } from "../../../utils/cn";
 import { useMobilSidebar } from "../../../hooks/useMobilSidebar";
+import { priceFormatter } from "../../../utils/priceFormatter";
 
-const PriceWrapper = ({ children }: { children: React.ReactNode }) => {
+const PriceWrapper = ({ children, priceMin, priceMax }: { children: React.ReactNode, priceMin: number, priceMax: number }) => {
   const { isDesktopView } = useMobilSidebar()
   const [isOpen, setIsOpen] = useState(false);
 
@@ -29,9 +30,9 @@ const PriceWrapper = ({ children }: { children: React.ReactNode }) => {
             type="button"
             onClick={toggleOpen}
             className="border border-neutral-medium/80 rounded-lg p-2.5 w-full bg-white hover:bg-neutral-medium/20 transition-colors duration-300 flex items-center justify-between cursor-pointer">
-            {/* <span className="text-neutral-dark">
-              {searchParams.priceMin || 0} - {searchParams.priceMax || "any"}
-            </span> */}
+            <span className="text-neutral-dark">
+              {priceFormatter(priceMin)} - {(priceMax > 0 && priceFormatter(priceMax)) || "any"}
+            </span>
             <ChevronDown
               size={18}
               className={`text-primary transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}

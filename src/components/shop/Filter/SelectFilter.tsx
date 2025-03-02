@@ -1,6 +1,7 @@
 import React from 'react'
 import { textFormatter } from '../../../utils/textFormatter'
 import { ChevronDown } from 'lucide-react';
+import { cn } from '../../../utils/cn';
 
 interface SelectFilterProp {
   name: string,
@@ -16,11 +17,12 @@ const SelectFilter = ({ name, list, value, execute }: SelectFilterProp) => {
         name={name}
         value={value}
         onChange={execute}
-        className="appearance-none w-full border border-neutral-medium/80 rounded-lg p-2.5 bg-white hover:bg-neutral-medium/20 transition-colors duration-300 pr-8 cursor-pointer"
+        className={cn("font-outfit appearance-none w-full border border-neutral-medium/80 rounded-lg p-2.5 bg-white",
+          " hover:bg-neutral-dark/10 transition-colors duration-300 pr-8 cursor-pointer")}
       >
         <option value="" className="text-neutral-dark/60">Select {textFormatter(name)}</option>
         {list.map((item) => (
-          <option key={item} value={item} className={`${value === item && "bg-primary"}`}>
+          <option key={item} value={item} className={`${value === item ? "bg-primary" : "bg-white"}`}>
             {textFormatter(item)}
           </option>
         ))}

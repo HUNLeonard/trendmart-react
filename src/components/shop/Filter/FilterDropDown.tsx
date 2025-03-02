@@ -33,7 +33,7 @@ const FilterDropdown = ({
         />
       </div>
 
-      <PriceWrapper>
+      <PriceWrapper priceMin={searchParams.priceMin} priceMax={searchParams.priceMax}>
         <div className="flex flex-col w-full">
           <div className="space-y-3">
             <div>

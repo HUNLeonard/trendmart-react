@@ -11,7 +11,7 @@ const SectionWrapper = ({ children }: { children: React.ReactNode }) => {
     <section
       //ref={sectionRef}
       className={cn("z-40 p-5",
-        "bg-white shadow-md transition-[translate] duration-500",
+        "bg-neutral-light/95 backdrop-blur-sm shadow-md transition-[translate] duration-500",
         isDesktopView
           ? "sticky top-[var(--header-h)] w-full rounded-lg border-neutral-dark/10 border"
           : `fixed left-0 top-[var(--header-h)] bottom-0 w-64 bg-neutral-light border-r border-neutral-dark -translate-x-full ${isOpen && "translate-x-0"}`,

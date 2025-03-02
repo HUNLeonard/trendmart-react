@@ -29,8 +29,8 @@ const ProductCard = ({ product }: { product: Product }) => {
       className={cn(
         "w-full bg-white h-auto text-neutral-dark transition-all duration-300",
         "shadow-md border-2 border-neutral-medium rounded-lg relative",
-        "hover:shadow-lg hover:border-primary/30",
-        "flex flex-col"
+        "hover:shadow-lg hover:border-primary/30 hover:-translate-y-1",
+        "flex flex-col "
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -39,7 +39,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         <OnSaleBadge text={`${discountPercentage}% OFF`} />
       )}
 
-      <div className='relative w-full overflow-hidden rounded-t-lg group'>
+      <div className='relative w-full overflow-hidden group rounded-md'>
         <Link to={`/products/${product.id}`} className="block">
           <div className="w-full aspect-square overflow-hidden">
             <img
@@ -47,7 +47,7 @@ const ProductCard = ({ product }: { product: Product }) => {
               alt={`Image of ${product.name}`}
               className={cn(
                 'bg-neutral-dark object-cover object-center w-full h-full',
-                'transition-transform duration-700 ease-out',
+                'transition-transform duration-700 ease-out transform-gpu',
                 isHovered ? 'scale-110' : 'scale-100'
               )}
             />
@@ -58,7 +58,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         {/* Quick view overlay on hover for desktop */}
         {!context?.isMobil && isHovered && (
           <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm py-2 
-                        transition-all duration-300 flex justify-center">
+                        transition-all duration-300 flex justify-center border-b-1 rounded-b-md">
             <Link
               to={`/products/${product.id}`}
               className="text-sm font-medium text-neutral-dark hover:text-primary transition-colors"
@@ -69,7 +69,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         )}
       </div>
 
-      <div className='p-3 xs:p-4 gap-2 flex flex-col xs:gap-3 w-full flex-grow'>
+      <div className='p-3 xs:p-4 gap-2 flex flex-col xs:gap-3 w-full flex-grow '>
         {/* Category tag */}
         {product.category && (
           <span className="text-xs text-neutral-dark/60 font-medium">

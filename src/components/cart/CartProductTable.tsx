@@ -10,7 +10,7 @@ export default function CartProductTable() {
   const mobilContext = useContext(MobilProviderContext);
 
   return (
-    <section className='w-full md:w-3/5 bg-black/10 border-neutral-dark/10 border-2 rounded-lg'>
+    <section className='w-full md:w-3/5 bg-black/10 border-neutral-dark/10 border-2 rounded-xl overflow-hidden'>
       {mobilContext?.isSmallView ? (
         // Mobile layout - card-based instead of table
         <div className="w-full p-2">
@@ -24,7 +24,7 @@ export default function CartProductTable() {
         </div>
       ) : (
         // Desktop table layout
-        <table className='w-full'>
+        <table className='w-full '>
           <thead className='bg-neutral-medium'>
             <tr className='*:font-semibold *:text-base sm:*:text-lg *:text-neutral-dark *:py-4'>
               <th className='w-1/2 md:w-2/4'>Product</th>
@@ -36,10 +36,8 @@ export default function CartProductTable() {
             {(params.isLoading || params.cart.length !== params.products.length) ? (
               <CartListSkeleton ammount={5} />
             ) : params.cart.length === 0 ? (
-              <tr>
-                <td className="p-8 text-center">Your cart</td>
-                <td className="p-8 text-center">is</td>
-                <td className="p-8 text-center">empty</td>
+              <tr className="">
+
               </tr>
             ) : (
               <CartProductListManager params={params} isSmallView={false} />
