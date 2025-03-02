@@ -14,7 +14,7 @@ export default function CartProductTable() {
       {mobilContext?.isSmallView ? (
         // Mobile layout - card-based instead of table
         <div className="w-full p-2">
-          {(params.isLoading && params.cart.length !== params.products.length) ? (
+          {(params.isLoading || params.cart.length !== params.products.length) ? (
             <CartListSkeleton ammount={5} />
           ) : params.cart.length === 0 ? (
             <div className="p-4 text-center">Your cart is empty</div>
@@ -33,7 +33,7 @@ export default function CartProductTable() {
             </tr>
           </thead>
           <tbody className='bg-white'>
-            {(params.isLoading && params.cart.length !== params.products.length) ? (
+            {(params.isLoading || params.cart.length !== params.products.length) ? (
               <CartListSkeleton ammount={5} />
             ) : params.cart.length === 0 ? (
               <tr>
