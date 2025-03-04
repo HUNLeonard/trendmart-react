@@ -44,7 +44,7 @@ function CartMobilList({ params }: { params: CartProps & User & CartActions }) {
 function CartDesktopView({ params }: { params: CartProps & User & CartActions }) {
   return (<>
     {params.products.map((prod) => (
-      <tr className="border-b border-neutral-dark/10">
+      <tr key={prod.id} className="border-b border-neutral-dark/10">
         <td className='p-4'>
           <CartCard product={prod} />
         </td>

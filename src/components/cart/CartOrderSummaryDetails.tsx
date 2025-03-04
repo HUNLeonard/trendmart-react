@@ -1,4 +1,4 @@
-import { CartProps, User } from '../context/CartProvider';
+import { CartProps, Checkout, User } from '../context/CartProvider';
 import { priceFormatter } from '../../utils/priceFormatter';
 import { CartActions } from '../../hooks/useCart';
 import { cn } from '../../utils/cn';
@@ -6,9 +6,9 @@ import { cn } from '../../utils/cn';
 
 
 
-const CartOrderSummaryDetails = ({ params }: { params: CartProps & User & CartActions }) => {
+const CartOrderSummaryDetails = ({ params }: { params: CartProps & User & CartActions & Checkout }) => {
 
-  const { cart, products, deleteCart } = params;
+  const { cart, products, deleteCart, setCheckout } = params;
 
   return (
     <>
@@ -32,7 +32,7 @@ const CartOrderSummaryDetails = ({ params }: { params: CartProps & User & CartAc
         }, 0))}</span>
       </div>
       <button
-        onClick={deleteCart}
+        onClick={() => { deleteCart(); setCheckout(true) }}
         className={cn("w-full bg-neutral-dark text-white py-3 rounded mt-4 font-semibold cursor-pointer",
           "hover:bg-neutral-dark/90 active:bg-neutral-dark/95 active:scale-95 [transition:colors_transform] duration-200 ease-in-out")}
       >

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 
 import CartContent from '../components/cart/CartContent';
 import CartProvider from '../components/context/CartProvider';
+import CheckoutPopup from '../components/cart/CheckoutPopup';
 
 
 
@@ -25,6 +26,7 @@ const Cart = () => {
   return (
     <CartProvider userId={userId}>
       <CartContent />
+      <CheckoutPopup />
     </CartProvider>
   );
 };

@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import React, { createContext, useMemo, useState } from 'react'
 import { CartActions, useCart } from '../../hooks/useCart';
 import { useQueries } from '@tanstack/react-query';
 import getProductById from '../../services/product/get';
@@ -15,10 +15,16 @@ export interface User {
   userId: string
 }
 
-export const CartProviderContext = createContext<CartProps & User & CartActions | null>(null);
+export interface Checkout {
+  checkout: boolean;
+  setCheckout: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const CartProviderContext = createContext<CartProps & User & CartActions & Checkout | null>(null);
 
 const CartProvider = ({ children, userId }: { children: React.ReactNode, userId: string }) => {
   const { cart = [], increaseItem, decreaseItem, deleteCart, removeItem } = useCart(userId);
+  const [checkout, setCheckout] = useState(false);
 
   const productResults = useQueries({
     queries: cart.map(item => ({
@@ -29,17 +35,19 @@ const CartProvider = ({ children, userId }: { children: React.ReactNode, userId:
   });
 
   // Check if every product loaded in
-  const isLoading = productResults.some(result => result.isLoading);
+  const isLoading = useMemo(() => { return productResults.some(result => result.isLoading) }, [productResults]);
 
-  const products = isLoading
-    ? []
-    : productResults
-      .map(result => result.data)
-      .filter(Boolean) as Product[];
+  const products = useMemo(() => {
+    return isLoading
+      ? []
+      : productResults
+        .map(result => result.data)
+        .filter(Boolean) as Product[]
+  }, [productResults, isLoading]);
 
 
   return (
-    <CartProviderContext.Provider value={{ products, increaseItem, decreaseItem, deleteCart, removeItem, cart, isLoading: isLoading || products.length !== cart.length, userId }}>
+    <CartProviderContext.Provider value={{ products, increaseItem, decreaseItem, deleteCart, removeItem, cart, isLoading: isLoading || products.length !== cart.length, userId, checkout, setCheckout }}>
       {children}
     </CartProviderContext.Provider>
   )

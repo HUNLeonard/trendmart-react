@@ -1,19 +1,19 @@
-import { useRef, useState, useEffect, useMemo } from "react"
+import { useRef, useEffect, useState, useMemo } from "react"
 import { useAnimation } from "../../hooks/useAnimation"
 
 const Members = () => {
   const memberRefs = useRef<Array<HTMLDivElement | null>>([])
   const [elements, setElements] = useState<Element[] | null>(null)
 
-  const members = useMemo(() => [
-    { name: 'John Doe', role: 'Founder & CEO', bg: 'bg-primary/20' },
-    { name: 'Sam Wilson', role: 'Head of Design', bg: 'bg-secondary/20' },
-    { name: 'Jamie Rivera', role: 'Lead Buyer', bg: 'bg-accent/20' }
-  ], [])
+  const members = useMemo(() => {
+    return [
+      { name: 'John Doe', role: 'Founder & CEO', bg: 'bg-primary/20' },
+      { name: 'Sam Wilson', role: 'Head of Design', bg: 'bg-secondary/20' },
+      { name: 'Jamie Rivera', role: 'Lead Buyer', bg: 'bg-accent/20' }
+    ]
+  }, [])
 
   useEffect(() => {
-    memberRefs.current = memberRefs.current.slice(0, members.length)
-
     // Filter out null refs and set elements
     const validRefs = memberRefs.current.filter(Boolean) as Element[]
     if (validRefs.length > 0) {
@@ -23,7 +23,7 @@ const Members = () => {
 
   useAnimation({
     element: elements,
-    animation: "floatUp",
+    animation: "floatUp"
   })
 
   return (
@@ -31,7 +31,7 @@ const Members = () => {
       <h2 className="font-outfit text-2xl font-bold text-neutral-dark mb-6 text-center">Meet Our Team</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {members.map((member, index) => (
-          <div key={index} ref={el => memberRefs.current[index] = el}
+          <div key={index} ref={el => { memberRefs.current[index] = el }}
             className={`${member.bg} rounded-xl p-6 text-center shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out`}>
             <div className="w-24 h-24 rounded-full bg-neutral-dark mx-auto mb-4">
               {/* This would be replaced with actual team member photos */}
